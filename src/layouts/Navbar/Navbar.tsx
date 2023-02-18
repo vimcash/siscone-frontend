@@ -1,11 +1,9 @@
+import { YarigaLogo } from "../../assets"
 
 export const Navbar = ({title}) => {
   return (
-    <nav className="navbar">
-      <div className="container-fluid">
-        <span className="navbar-brand mb-0 h1">{title}</span>
-        <div className="d-flex">
-        </div>
+    <nav className="navbar bg-ligth-white w-screen h-16 relative z-0">
+      <div className=" ml-4 mt-1">
       </div>
     </nav>
   )
