@@ -12,15 +12,11 @@ export interface IApplicationProps {}
 
 function App ({Component, pageProps}: AppProps) {
   return (
-    <div className="flex flex-row bg-[#E5E5E5]">
-      <Sidebar />
-      <div className="">
-        <div className=''>
-        <div className="w-screen h-[70px] bg-ligth-white"/>
-          <Component {...pageProps}/>
+    <div className="flex bg-[#E5E5E5]">
+        <div className="relative">
+          <Sidebar />
         </div>
-      </div>
-      <Footer />
+          <Component {...pageProps}/>
     </div>
   )
 }

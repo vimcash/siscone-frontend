@@ -9,10 +9,10 @@ const Sidebar = () => {
 
   return (
     <div>
-      <div className={`bg-ligth-white h-screen p-5 pt-8 ${showSidebar ? 'w-[230px]' : 'w-20'} duration-300 relative`}>        
+      <div className={`bg-ligth-white max-[425px]:bg-transparent relative max-sm:fixed md:h-screen p-5 ${showSidebar ? 'w-[230px]' : 'w-20'} ${showSidebar && 'max-sm:hidden'} duration-300 top-0 left-0 right-0`}>        
         <ArrowBackIosNew className={`bg-ligth-purple text-ligth-white text-3xl
         rounded-full absolute -right-3 top-9 mt-10 border cursor-pointer
-        ${!showSidebar && 'rotate-180 transition-transform duration-300'} z-10`} onClick={() => setShowSidebar(!showSidebar)}/>
+        ${!showSidebar && 'rotate-180 transition-transform duration-300'} z-10 max-sm:hidden`} onClick={() => setShowSidebar(!showSidebar)}/>
         {showSidebar ?
         <div className={`inline-flex -mt-[300px] -ml-[30px] cursor-pointer ${showSidebar && "rotate-[360deg]"}`}>
             <YarigaLogo /> 
