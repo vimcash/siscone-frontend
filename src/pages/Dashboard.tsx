@@ -6,7 +6,7 @@ import { PieChart, TotalRevenue, ProductReferrals } from '../components/charts/i
 
 const Dashboard: NextPage = () => {
   return (
-    <Box>
+    <Box className="w-screen">
     <Typography fontSize={25} fontWeight={700} color="#11142D" className="mt-4 ml-6">
       Dashboard
     </Typography>
