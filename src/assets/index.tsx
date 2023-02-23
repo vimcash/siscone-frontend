@@ -2,8 +2,8 @@ import { Inventory2Outlined, SellOutlined} from '@mui/icons-material';
 
 export const Menu = [
   {title: "Dashboard", to: "/Dashboard"},
+  {title: "Products", to: "/AllProducts", icon: <Inventory2Outlined />},
   {title: "Managment", to: "/Management", icon: <SellOutlined />},
-  {title: "Products", to: "/Inventory", icon: <Inventory2Outlined />},
 ]
 
 export const productReferralsInfo = [

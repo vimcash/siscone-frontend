@@ -2,7 +2,7 @@ import { Box, typography, Stack } from "@mui/system"
 import { NextPage } from "next"
 import { Typography } from "@mui/material"
 
-import { PieChart, TotalRevenue, ProductReferrals } from '../components/charts/intex'
+import { PieChart, TotalRevenue, ProductReferrals } from '../components/charts/index'
 
 const Dashboard: NextPage = () => {
   return (
