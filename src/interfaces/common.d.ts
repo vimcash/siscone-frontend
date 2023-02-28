@@ -19,3 +19,12 @@ export interface FormProps {
     onFinishHandler: (data: FieldValues) => Promise<void> | void,
     productImage: { name: string, url: string },
 }
+
+export interface ProductGridProps {
+    _id: ObjectId
+    title: string,
+    dscription: string,
+    productType:string,
+    category: string,
+    photo: string,
+}
