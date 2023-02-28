@@ -7,14 +7,14 @@ type Return = {
     products: Product[]
 }
 
-export const getProducts = async () : Promise<Product[]> => {
+export const getProducts = async () : Promise<any[]> => {
     const mongoClient = await clientPromise;
     
     const data = await mongoClient
         .db()
         .collection('products')
         .find()
-        .toArray() as Product[];
+        .toArray();
     return data
 }
 

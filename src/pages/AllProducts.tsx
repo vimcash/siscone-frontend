@@ -12,15 +12,10 @@ import { Container } from '@mui/system';
 
 export const getStaticProps : GetStaticProps = async () => {
   const data = await getProducts()
-
+  console.log(data.map(pro => ({...pro, id: pro._id.toString(), _id: pro._id.toString()})))
   return {
     props: {
-      products: data
-      .map((product) => product ? ({...product, id: product._id}) : null)
-      .flat(1)
-      .filter((product) => {
-        return product !== null
-      }),
+      products: data.map(pro => ({...pro, id: pro._id.toString(), _id: pro._id.toString()}))
     },
     revalidate: 60,
   }
@@ -29,32 +24,29 @@ export const getStaticProps : GetStaticProps = async () => {
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
   {
-    field: 'firstName',
-    headerName: 'First name',
+    field: 'title',
+    headerName: 'Product',
     width: 150,
     editable: true,
   },
   {
-    field: 'lastName',
-    headerName: 'Last name',
+    field: 'productType',
+    headerName: 'Category',
     width: 150,
     editable: true,
   },
   {
-    field: 'age',
-    headerName: 'Age',
+    field: 'price',
+    headerName: 'Price',
     type: 'number',
     width: 110,
     editable: true,
   },
   {
-    field: 'fullName',
-    headerName: 'Full name',
-    description: 'This column has a value getter and is not sortable.',
-    sortable: false,
+    field: 'description',
+    headerName: 'Description',
     width: 160,
-    valueGetter: (params: GridValueGetterParams) =>
-      `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+    editable: true,
   },
 ];
 
@@ -71,7 +63,6 @@ const rows = [
 ];
 
 const AllProducts: NextPage = (props: any) => {
-  console.log(props.products)
   return (
     <Box>
       <Stack direction="row"
@@ -98,7 +89,7 @@ const AllProducts: NextPage = (props: any) => {
     <Container>
       <Box bgcolor="#fcfcfc" sx={{ height: 400, width: '100%' }}>
         <DataGrid
-          rows={rows}
+          rows={props.products}
           columns={columns}
           pageSize={5}
           rowsPerPageOptions={[5]}
