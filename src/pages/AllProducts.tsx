@@ -3,24 +3,26 @@ import React from 'react'
 import { Add } from "@mui/icons-material";
 import { Box, Stack, Typography } from "@mui/material";
 import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+
 import { CustomButton } from "../components/common/CustomButton";
+import { ProductDataGrid } from '../components/common/Datagrid';
 import Link from 'next/link';
 import { getProducts } from './api/products';
 import { Container } from '@mui/system';
 
-export const getStaticProps: GetStaticProps = async () => {
+export const getStaticProps : GetStaticProps = async () => {
   const data = await getProducts()
-  console.log(data.map(pro => ({...pro, _id: pro._id.toString()})))
+  console.log(data.map(pro => ({...pro, id: pro._id.toString(), _id: pro._id.toString()})))
   return {
     props: {
-      products: data.map(pro => ({...pro, _id: pro._id.toString()}))
+      products: data.map(pro => ({...pro, id: pro._id.toString(), _id: pro._id.toString()}))
     },
     revalidate: 60,
   }
 }
 
 const columns: GridColDef[] = [
-  { field: '_id', headerName: 'ID', width: 90 },
+  { field: 'id', headerName: 'ID', width: 90 },
   {
     field: 'title',
     headerName: 'Product',
