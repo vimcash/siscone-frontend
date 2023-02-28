@@ -16,9 +16,7 @@ export const getStaticProps : GetStaticProps = async () => {
   return {
     props: {
       products: data
-      .map((product) => {
-        return product || null
-      })
+      .map((product) => product ? ({...product, id: product._id}) : null)
       .flat(1)
       .filter((product) => {
         return product !== null
