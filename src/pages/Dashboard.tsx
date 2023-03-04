@@ -6,14 +6,14 @@ import { PieChart, TotalRevenue, ProductReferrals } from '../components/charts/i
 
 const Dashboard: NextPage = () => {
   return (
-    <Box className="w-screen">
-    <Typography fontSize={25} fontWeight={700} color="#11142D" className="mt-4 ml-6">
+    <Box mb={16}>
+    <Typography fontSize={25} fontWeight={700} color="#11142D" mt={9}>
       Dashboard
     </Typography>
 
     <Box mt="20px" display="flex" flexWrap="wrap" sx={{
       gap: {xs:2, sm: 2, md: 6, lg: 2},
-      marginRight: {xs:6.5, sm:3, md:10, lg: 20}
+      marginRight: {xs:6.5, sm:3, md:10, lg: 15,}
     }}>
       <PieChart 
         title="Productos en ventas"
@@ -44,7 +44,7 @@ const Dashboard: NextPage = () => {
       />
     </Box>
 
-    <Stack mt="25px" width="90%" direction={{xs: 'column', lg: 'row' }} gap={4}>
+    <Stack mt="25px" width="90%" direction={{xs: 'column', lg: 'row',}} sx={{ marginRight: {xl: 55}}}  gap={4}>
       <TotalRevenue />
       <ProductReferrals />
     </Stack>
