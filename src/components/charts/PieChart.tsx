@@ -7,7 +7,7 @@ import { Directions, Padding } from "@mui/icons-material";
 export const PieChart = ({ title, value, series, colors}: PieChartProps) => {
   return (
     <Box
-      className="ml-6"
+      ml={1}
       id="chart"
       flex={1}
       display="flex"
@@ -17,7 +17,6 @@ export const PieChart = ({ title, value, series, colors}: PieChartProps) => {
       alignItems="center"
       pl={3.5}
       py={2}
-      gap={5}
       borderRadius="15px"
       minHeight="110px"
       sx={{width: {xs: "150px", md: "fit-content"}}}
@@ -40,7 +39,7 @@ export const PieChart = ({ title, value, series, colors}: PieChartProps) => {
         }}
         series={series}
         type="donut"
-        width="120px"
+        width="110px"
         />
     </Box>
   )

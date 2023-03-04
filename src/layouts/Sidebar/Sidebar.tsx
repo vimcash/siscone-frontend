@@ -1,45 +1,176 @@
-import Link from 'next/link'
-import React, {useState} from 'react'
-import { ArrowBackIosNew, DashboardOutlined } from '@mui/icons-material';
-import { YarigaLogo, Logo } from "../../assets"
-import { Menu } from '../../assets/index'
+import * as React from 'react';
+import { useRouter } from 'next/router';
+import InboxIcon from '@mui/icons-material/MoveToInbox';
+import MailIcon from '@mui/icons-material/Mail';
+import MenuIcon from '@mui/icons-material/Menu';
+import Link from 'next/link';
+import { Typography, Toolbar, ListItem,
+         ListItemButton, ListItemIcon,
+         ListItemText, List, IconButton, 
+         Drawer, Divider, CssBaseline, Box, AppBar } from '@mui/material';
+import { DashboardOutlined, Inventory2Outlined, SellOutlined } from '@mui/icons-material';
+const drawerWidth = 240;
 
-const Sidebar = () => {
-    const [showSidebar, setShowSidebar] = useState(true)
+interface Props {
+
+  window?: () => Window;
+}
+
+export const Sidebar = (props: Props) => {
+  const { window } = props;
+  const [mobileOpen, setMobileOpen] = React.useState(false);
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
+  };
+  const router = useRouter();
+  const isSelectedDashboard = router.pathname === '/Dashboard';
+  const isSelectedProduct = router.pathname === '/AllProducts';
+  const drawer = (
+    <div>
+      <Toolbar />
+      <List>
+          <Link href="/Dashboard">
+          <ListItem key={router.pathname}>
+            <ListItemButton selected={isSelectedDashboard ? true : false} sx={{
+              "&.Mui-selected": {
+                "&:hover": {
+                  backgroundColor: isSelectedDashboard ? "#1e36e8" : "transparent",
+                },
+                backgroundColor: isSelectedDashboard ? "#475be8" : "transparent",
+              },
+                justifyContent: "center",
+                margin: "10px auto",
+                borderRadius: "12px",
+                minHeight: "56px",
+                width: "90%",
+                mt: -2
+            }}>
+              <ListItemIcon sx={{
+                  pl: 2,
+                  py: 1,
+                  justifyContent: "center",
+                  minWidth: 36,
+                  color: isSelectedDashboard ? "#fff" : "#808191",
+                }}>
+                <DashboardOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" primaryTypographyProps={{
+                  noWrap: true,
+                  fontSize: "16px",
+                  fontWeight: isSelectedDashboard ? "bold" : "normal",
+                  color: isSelectedDashboard ? "#fff" : "#808191",
+                  marginLeft: "10px"
+                }} />
+            </ListItemButton>
+          </ListItem>
+          </Link>
+      </List>
+
+      <List>
+          <Link href="/AllProducts">
+          <ListItem>
+            <ListItemButton selected={isSelectedProduct ? true : false} sx={{
+              "&.Mui-selected": {
+                "&:hover": {
+                  backgroundColor: isSelectedProduct ? "#1e36e8" : "transparent",
+                },
+                backgroundColor: isSelectedProduct ? "#475be8" : "transparent",
+              },
+                justifyContent: "center",
+                margin: "10px auto",
+                borderRadius: "12px",
+                minHeight: "56px",
+                width: "90%",
+                mt: -2
+            }}>
+              <ListItemIcon sx={{
+                  pl: 2,
+                  py: 1,
+                  justifyContent: "center",
+                  minWidth: 36,
+                  color: isSelectedProduct ? "#fff" : "#808191",
+                }}>
+                <Inventory2Outlined />
+              </ListItemIcon>
+              <ListItemText primary="Products" primaryTypographyProps={{
+                  noWrap: true,
+                  fontSize: "16px",
+                  fontWeight: isSelectedProduct ? "bold" : "normal",
+                  color: isSelectedProduct ? "#fff" : "#808191",
+                  marginLeft: "10px"
+                }} />
+            </ListItemButton>
+          </ListItem>
+          </Link>
+      </List>
+    </div>
+  );
+
+  const container = window !== undefined ? () => window().document.body : undefined;
 
   return (
-    <div>
-      <div className={`bg-ligth-white max-[425px]:bg-transparent relative max-sm:fixed md:h-screen p-5 ${showSidebar ? 'w-[230px]' : 'w-20'} ${showSidebar && 'max-sm:hidden'} duration-300 top-0 left-0 right-0`}>        
-        <ArrowBackIosNew className={`bg-ligth-purple text-ligth-white text-3xl
-        rounded-full absolute -right-3 top-9 mt-10 border cursor-pointer
-        ${!showSidebar && 'rotate-180 transition-transform duration-300'} z-10 max-sm:hidden`} onClick={() => setShowSidebar(!showSidebar)}/>
-        {showSidebar ?
-        <div className={`inline-flex -mt-[300px] -ml-[30px] cursor-pointer ${showSidebar && "rotate-[360deg]"}`}>
-            <YarigaLogo /> 
-        </div>
-          :
-        <div className={`inline-flex -mt-[300px] -ml-[30px] cursor-pointer duration-500`}>
-            <Logo /> 
-        </div>
-        }
-
-        <ul>
-          {Menu.map((menu, i) => (
-            <>
-              <li key={i} className={`text-gray-500 text-lg flex items-center gap-x-4 cursor-pointer p-2 hover:bg-ligth-purple hover:text-ligth-white rounded-xl mt-2 -ml-9 ${showSidebar ? 'w-48' : 'w-[50px] h-[50px]' } h-16`}>
-                <Link href={menu.to} className="hover:text-ligth-white ml-1 -mt-1">
-                  <span className={`text-2xl`}>
-                  {menu.icon ? menu.icon : <DashboardOutlined />}
-                  </span>
-                  <span className={`text-base flex-1 ml-2 font-semibold  ${!showSidebar && "hidden"}`}>{menu.title}</span>
-                </Link>
-              </li>
-           </>
-          ))}
-        </ul>
-      </div>
-    </div>
-  )
+    <Box sx={{ display: 'flex' }}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        sx={{
+          width: { sm: `calc(100% - ${drawerWidth}px)` },
+          ml: { sm: `${drawerWidth}px` },
+        }}
+        style={{ background: "#fcfcfc" }}
+      >
+        <Toolbar>
+          <IconButton
+            style={{ color: "#fcfcfc", background: "#475be8"}}
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+        </Toolbar>
+      </AppBar>
+      <Box
+        component="nav"
+        sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+        aria-label="mailbox folders"
+      >
+        {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+        <Drawer
+          container={container}
+          variant="temporary"
+          open={mobileOpen}
+          onClose={handleDrawerToggle}
+          ModalProps={{
+            keepMounted: true, // Better open performance on mobile.
+          }}
+          sx={{
+            display: { xs: 'block', sm: 'none' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+        >
+          {drawer}
+        </Drawer>
+        <Drawer
+          variant="permanent"
+          sx={{
+            display: { xs: 'none', sm: 'block' },
+            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+          }}
+          open
+        >
+          {drawer}
+        </Drawer>
+      </Box>
+      <Box
+        component="main"
+        sx={{ flexGrow: 1, p: 3}}
+      >
+      </Box>
+    </Box>
+  );
 }
 
 export default Sidebar

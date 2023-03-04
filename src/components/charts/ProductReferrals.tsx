@@ -6,7 +6,6 @@ import ProgressBar from '../../features/progresBar/components/ProgresBar';
 export const ProductReferrals = () => {
   return (
     <Box
-      marginLeft={3}
       p={4}
       bgcolor="#fcfcfc"
       id="chart"
