@@ -7,4 +7,5 @@ export type Product = {
     productType:string,
     category: string,
     photo: string,
+    createdAt: Date,
 }

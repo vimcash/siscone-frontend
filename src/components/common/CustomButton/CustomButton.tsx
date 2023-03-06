@@ -10,14 +10,14 @@ export const CustomButton = ({type, title, backgroundColor,
       <div className="bg-ligth-purple rounded-lg">
         <Button sx={{
           flex: fullWidth ? 1 : 'unset',
-          padding: '10px 15px',
+          padding: {xs: '10px 10px', lg:'10px 15px'},
           width: fullWidth ? '100%' : 'fit-content',
           minWidth: 130,
           backgroundColor,
           color,
-          fontSize: 16,
+          fontSize: {xs:14, lg:16},
           fontWeight: 600,
-          gap: '10px',
+          gap: {xs:'5px', lg:'10px'},
           textTransform: 'capitalize',
           '&:hover': {
             opacity: 0.9,

@@ -8,7 +8,9 @@ import { Typography, Toolbar, ListItem,
          ListItemButton, ListItemIcon,
          ListItemText, List, IconButton, 
          Drawer, Divider, CssBaseline, Box, AppBar } from '@mui/material';
-import { DashboardOutlined, Inventory2Outlined, SellOutlined } from '@mui/icons-material';
+import { Dashboard, Inventory2Outlined, LogoutOutlined } from '@mui/icons-material';
+import { YarigaLogo } from '../../assets';
+import { Container } from '@mui/system';
 const drawerWidth = 240;
 
 interface Props {
@@ -28,6 +30,9 @@ export const Sidebar = (props: Props) => {
   const isSelectedProduct = router.pathname === '/AllProducts';
   const drawer = (
     <div>
+      <Container sx={{mt: 2.5, flex: 1, flexGrow: 1, ml: 2.5}}>
+        <YarigaLogo />
+      </Container>
       <Toolbar />
       <List>
           <Link href="/Dashboard">
@@ -44,16 +49,17 @@ export const Sidebar = (props: Props) => {
                 borderRadius: "12px",
                 minHeight: "56px",
                 width: "90%",
-                mt: -2
+                mt: -2,
             }}>
               <ListItemIcon sx={{
                   pl: 2,
                   py: 1,
+                  ml: -2,
                   justifyContent: "center",
                   minWidth: 36,
                   color: isSelectedDashboard ? "#fff" : "#808191",
                 }}>
-                <DashboardOutlined />
+                <Dashboard />
               </ListItemIcon>
               <ListItemText primary="Dashboard" primaryTypographyProps={{
                   noWrap: true,
@@ -87,6 +93,7 @@ export const Sidebar = (props: Props) => {
               <ListItemIcon sx={{
                   pl: 2,
                   py: 1,
+                  ml: -2,
                   justifyContent: "center",
                   minWidth: 36,
                   color: isSelectedProduct ? "#fff" : "#808191",
@@ -98,6 +105,43 @@ export const Sidebar = (props: Props) => {
                   fontSize: "16px",
                   fontWeight: isSelectedProduct ? "bold" : "normal",
                   color: isSelectedProduct ? "#fff" : "#808191",
+                  marginLeft: "10px"
+                }} />
+            </ListItemButton>
+          </ListItem>
+          </Link>
+      </List>
+
+      <List>
+          <Link href="/AllProducts">
+          <ListItem>
+            <ListItemButton sx={{
+              "&.Mui-selected": {
+                "&:hover": {
+                },
+              },
+                justifyContent: "center",
+                margin: "10px auto",
+                borderRadius: "12px",
+                minHeight: "56px",
+                width: "90%",
+                mt: -2
+            }}>
+              <ListItemIcon sx={{
+                  pl: 2,
+                  py: 1,
+                  ml: -2,
+                  justifyContent: "center",
+                  minWidth: 36,
+                  color: "#808191",
+                }}>
+                <LogoutOutlined />
+              </ListItemIcon>
+              <ListItemText primary="Logout" primaryTypographyProps={{
+                  noWrap: true,
+                  fontSize: "16px",
+                  fontWeight:"normal",
+                  color: "#808191",
                   marginLeft: "10px"
                 }} />
             </ListItemButton>
@@ -117,6 +161,7 @@ export const Sidebar = (props: Props) => {
         sx={{
           width: { sm: `calc(100% - ${drawerWidth}px)` },
           ml: { sm: `${drawerWidth}px` },
+          boxShadow: "none",
         }}
         style={{ background: "#fcfcfc" }}
       >

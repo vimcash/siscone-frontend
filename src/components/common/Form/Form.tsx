@@ -9,9 +9,15 @@ export const Form = ({ type, register,
   handleSubmit, handleImageChange,
   formLoading, onFinishHandler, productImage }: FormProps ) => {
   return (
-    <Box width="85%" ml={4}>
+    <Box sx={{
+      width: {lg: "80%"},
+      marginRight: {md:4},
+      flex: 1,
+      ml: {xs:-6, sm:-6, md:-2, lg:4}
+      }} 
+        ml={3} mt={9} mb={2}>
       <Typography fontSize={25} fontWeight={700} color="#11142d">
-        {type} un Producto
+        Crear un Producto
       </Typography>
 
       <Box mt={2.5} borderRadius="15px" padding="20px" bgcolor="#fcfcfc">
@@ -52,7 +58,7 @@ export const Form = ({ type, register,
           </FormControl>
           {/* Items o tipos de productos ha seleccionar*/}
           <Stack direction="row" gap={4}>
-            <FormControl sx={{ flex: 1}}>
+            <FormControl sx={{ flex: 1, mt: {xs:-6.5, sm:-3.5, md:0}}}>
               <FormHelperText sx={{
                 fontWeight: 700,
                 margin: '10px 0',
@@ -144,12 +150,17 @@ export const Form = ({ type, register,
                 </Typography>
             </Stack>
             {/* Boton de Subir Producto */}
-            <CustomButton 
-              type='submit'
-              title={formLoading ? 'Subiendo...' : 'Subir'}
-              backgroundColor="#475be8"
-              color="#fcfcfc"
-            />
+            <Stack sx={{
+              width: {sm:"28%", md:"20%", lg: "13%", xl:"10%" },
+              alignItems: "center",
+              }}>
+              <CustomButton 
+                type='submit'
+                title={formLoading ? 'Subiendo...' : 'Subir'}
+                backgroundColor="#475be8"
+                color="#fcfcfc"
+              />
+            </Stack>
         </form>
       </Box>
     </Box>

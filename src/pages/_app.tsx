@@ -7,8 +7,6 @@ import Footer from '../layouts/Footer/Footer'
 import  { Sidebar }  from '../layouts/Sidebar'
 import { StyledEngineProvider } from '@mui/styled-engine'
 
-export interface IApplicationProps {}
-
 function App ({Component, pageProps}: AppProps) {
   return (
     <div className="flex bg-[#E5E5E5]">

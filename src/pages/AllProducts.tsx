@@ -1,14 +1,13 @@
 import { GetStaticProps, NextPage } from 'next/types'
-import React from 'react'
+import React, { useState } from 'react'
 import { Add } from "@mui/icons-material";
-import { Box, Stack, Typography } from "@mui/material";
-import { DataGrid, GridColDef, GridValueGetterParams } from '@mui/x-data-grid';
+import { Box, Stack, Typography, Avatar } from "@mui/material";
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import moment from 'moment';
 
 import { CustomButton } from "../components/common/CustomButton";
-import { ProductDataGrid } from '../components/common/Datagrid';
 import Link from 'next/link';
 import { getProducts } from './api/products';
-import { Container } from '@mui/system';
 
 export const getStaticProps : GetStaticProps = async () => {
   const data = await getProducts()
@@ -47,22 +46,39 @@ const columns: GridColDef[] = [
     width: 160,
     editable: true,
   },
+  {
+    field: 'createdAt',
+    headerName: 'Fecha',
+    width: 120,
+    editable: false,
+    renderCell: params =>moment(params.row.createdAt).format('YYYY-MM-DD')
+  },
+  {
+    field: 'photo',
+    headerName: 'Foto',
+    width: 60,
+    editable: false,
+    sortable: false,
+    filterable: false,
+    renderCell: (params) => <Avatar  src={params.row.photo} />
+  },
 ];
 
 
 const AllProducts: NextPage = (props: any) => {
+  const [pageSize, setPageSize] = useState(5)
   return (
-    <Box>
+    <Box mt={8} mb={16}>
       <Stack direction="row"
-      mt={2}
-      ml={1}
       sx={{
-        gap: {lg: 140}
+        gap: {xs:2, md: 52, lg: 95, xl: 140},
+        mt: { md:2 , lg: 4},
+        ml: {xs:-2, lg: 1},
       }}
       justifyContent="space-between"
       alignItems="center">
           <Typography fontSize={25} fontWeight={700} color="#11142d">
-            Todos los Productos
+            Productos
           </Typography>
           <Link href="/CreateProducts">
           <CustomButton 
@@ -74,19 +90,22 @@ const AllProducts: NextPage = (props: any) => {
           </Link>
       </Stack>
       
-    <Container>
-      <Box bgcolor="#fcfcfc" sx={{ height: 400, width: '100%' }}>
+      <Box bgcolor="#fcfcfc" sx={{ height: 400, width: '100%', mt: 4, flex: 1}}>
         <DataGrid
           rows={props.products}
           columns={columns}
-          pageSize={5}
-          rowsPerPageOptions={[5]}
+          pageSize={pageSize}
+          rowsPerPageOptions={[5, 10, 20]}
+          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
           checkboxSelection
           disableSelectionOnClick
           experimentalFeatures={{ newEditingApi: true }}
+          getRowSpacing={params=> ({
+            top: params.isFirstVisible ? 0 : 3,
+            bottom: params.isLastVisible ? 0 : 3,
+          })}
         />
       </Box>
-    </Container>
     </Box>
   )
 }
