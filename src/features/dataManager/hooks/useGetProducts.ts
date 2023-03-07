@@ -1,10 +1,10 @@
 import { createAsyncThunk } from "@reduxjs/toolkit"
-import { getProducts } from "../services/getProducts"
+import { getAPIProducts } from "../services/getAPIProducts"
 
 export const useGetProducts = createAsyncThunk(
-  'service/getProducts',
+  'service/getAPIProducts',
   async () => {
-    const products:any = await getProducts()
-    return products
+    const products = await getAPIProducts()
+    return products ? products.data : []
   }
 )

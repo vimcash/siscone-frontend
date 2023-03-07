@@ -9,16 +9,9 @@ import { CustomButton } from "../components/common/CustomButton";
 import { ProductActions } from '../components/common/ProductActions';
 import Link from 'next/link';
 import { getProducts } from './api/products';
-
-export const getStaticProps : GetStaticProps = async () => {
-  const data = await getProducts()
-  return {
-    props: {
-      products: data.map(pro => ({...pro, id: pro._id.toString(), _id: pro._id.toString()}))
-    },
-    revalidate: 60,
-  }
-}
+import { useAppDispatch, useAppSelector } from '../hooks';
+import { useGetProducts } from '../features/dataManager/hooks/useGetProducts';
+import { selectProduct } from '../features/dataManager/states/productState/productState';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -75,8 +68,11 @@ const columns: GridColDef[] = [
 ];
 
 
-const AllProducts: NextPage = (props: any) => {
+const AllProducts = () => {
   const [pageSize, setPageSize] = useState(5)
+  const dispatch = useAppDispatch()
+  const product = useAppSelector(selectProduct)
+  console.log(product.products.products)
   return (
     <Box mt={8} mb={16}>
       <Stack direction="row"
@@ -90,19 +86,20 @@ const AllProducts: NextPage = (props: any) => {
           <Typography fontSize={25} fontWeight={700} color="#11142d">
             Productos
           </Typography>
-          <Link href="/CreateProducts">
+          {/* <Link href="/CreateProducts"> */}
           <CustomButton 
             title="Agregar Producto"
             backgroundColor="#475be8"
             color="#fcfcfc"
             icon={<Add />}
+            handleClick={() => dispatch(useGetProducts())}
           />
-          </Link>
+          {/* </Link> */}
       </Stack>
       
       <Box bgcolor="#fcfcfc" sx={{ height: 400, width: '100%', mt: 4, flex: 1}}>
         <DataGrid
-          rows={props.products}
+          rows={product.products.products}
           columns={columns}
           pageSize={pageSize}
           rowsPerPageOptions={[5, 10, 20]}

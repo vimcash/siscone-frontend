@@ -15,7 +15,7 @@ export const getProducts = async () : Promise<any[]> => {
         .collection('products')
         .find()
         .toArray();
-    return data
+    return data.map(product => ({...product, id: product._id.toString()}))
 }
 
 export default async (req: NextApiRequest, res: NextApiResponse<Return>) => {
