@@ -4,6 +4,7 @@ import { Add } from "@mui/icons-material";
 import { Box, Stack, Typography, Avatar } from "@mui/material";
 import { DataGrid, GridActionsCellItemProps, GridColDef } from '@mui/x-data-grid';
 import moment from 'moment';
+import { createTheme } from '@mui/material/styles';
 
 import { CustomButton } from "../components/common/CustomButton";
 import { ProductActions } from '../components/common/ProductActions';
@@ -73,11 +74,11 @@ const AllProducts = () => {
   const dispatch = useAppDispatch()
   const product = useAppSelector(selectProduct)
   console.log(product.products.products)
-  return (
+return (
     <Box mt={8} mb={16}>
       <Stack direction="row"
       sx={{
-        gap: {xs:2, md: 52, lg: 95, xl: 140},
+        gap: {xs:2, md: 52, lg: 95, xl: 115},
         mt: { md:2 , lg: 4},
         ml: {xs:-2, lg: 1},
       }}

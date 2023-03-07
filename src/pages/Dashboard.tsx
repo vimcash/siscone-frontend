@@ -13,7 +13,7 @@ const Dashboard: NextPage = () => {
 
     <Box mt="20px" display="flex" flexWrap="wrap" sx={{
       gap: {xs:2, sm: 2, md: 6, lg: 2},
-      marginRight: {xs:6.5, sm:3, md:10, lg: 15,}
+      marginRight: {xs:6.5, sm:3, md:10, lg: 17,}
     }}>
       <PieChart 
         title="Productos en ventas"
@@ -44,7 +44,7 @@ const Dashboard: NextPage = () => {
       />
     </Box>
 
-    <Stack mt="25px" width="90%" direction={{xs: 'column', lg: 'row',}} sx={{ marginRight: {xl: 55}}}  gap={4}>
+    <Stack mt="25px" width="90%" direction={{xs: 'column', lg: 'row',}} sx={{ marginRight: {xl: 35}}}  gap={4}>
       <TotalRevenue />
       <ProductReferrals />
     </Stack>

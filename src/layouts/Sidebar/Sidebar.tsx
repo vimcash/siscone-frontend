@@ -30,8 +30,10 @@ export const Sidebar = (props: Props) => {
   const isSelectedProduct = router.pathname === '/AllProducts';
   const drawer = (
     <div>
-      <Container sx={{mt: 2.5, flex: 1, flexGrow: 1, ml: 2.5}}>
-        <YarigaLogo />
+      <Container sx={{mt: 2.5, alignItems:"center"}}>
+        <Box ml={2.5}>
+          <YarigaLogo />
+        </Box>
       </Container>
       <Toolbar />
       <List>
