@@ -2,10 +2,11 @@ import { GetStaticProps, NextPage } from 'next/types'
 import React, { useState } from 'react'
 import { Add } from "@mui/icons-material";
 import { Box, Stack, Typography, Avatar } from "@mui/material";
-import { DataGrid, GridColDef } from '@mui/x-data-grid';
+import { DataGrid, GridActionsCellItemProps, GridColDef } from '@mui/x-data-grid';
 import moment from 'moment';
 
 import { CustomButton } from "../components/common/CustomButton";
+import { ProductActions } from '../components/common/ProductActions';
 import Link from 'next/link';
 import { getProducts } from './api/products';
 
@@ -56,11 +57,20 @@ const columns: GridColDef[] = [
   {
     field: 'photo',
     headerName: 'Foto',
-    width: 60,
+    width: 70,
     editable: false,
     sortable: false,
     filterable: false,
-    renderCell: (params) => <Avatar  src={params.row.photo} />
+    renderCell: (params) => <Avatar  src={params.row.photo} variant="rounded" />
+  },
+  {
+    field: 'actions',
+    headerName: 'Acciones',
+    width: 150,
+    type:'actions',
+    renderCell: (params) => (
+      <ProductActions {...{ params }} />
+    )
   },
 ];
 
@@ -101,8 +111,8 @@ const AllProducts: NextPage = (props: any) => {
           disableSelectionOnClick
           experimentalFeatures={{ newEditingApi: true }}
           getRowSpacing={params=> ({
-            top: params.isFirstVisible ? 0 : 3,
-            bottom: params.isLastVisible ? 0 : 3,
+            top: params.isFirstVisible ? 0 : 5,
+            bottom: params.isLastVisible ? 0 : 5,
           })}
         />
       </Box>
