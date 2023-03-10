@@ -70,8 +70,8 @@ const columns: GridColDef[] = [
 
 
 const AllProducts = () => {
-  const [pageSize, setPageSize] = useState(5)
   const dispatch = useAppDispatch()
+  const [pageSize, setPageSize] = useState(5)
   const product = useAppSelector(selectProduct)
   console.log(product.products.products)
 return (
@@ -100,7 +100,7 @@ return (
       
       <Box bgcolor="#fcfcfc" sx={{ height: 400, width: '100%', mt: 4, flex: 1}}>
         <DataGrid
-          rows={product.products.products}
+          rows={product.products.products || []}
           columns={columns}
           pageSize={pageSize}
           rowsPerPageOptions={[5, 10, 20]}

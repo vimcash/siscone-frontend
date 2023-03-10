@@ -38,6 +38,6 @@ const productState = createSlice({
   }
 })
 
-export const { setProductName, setCategoryID, setPrice, setDescription } = productState.actions
+export const { setProductName, setCategoryID, setPrice, setDescription, deleteProduct } = productState.actions
 export const selectProduct = (state:AppState) => state.product
 export const productReducer = productState.reducer

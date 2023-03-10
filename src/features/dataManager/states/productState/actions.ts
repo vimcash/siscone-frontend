@@ -12,6 +12,10 @@ const actions = {
   },
   setDescription: (state, {payload}: PayloadAction<string>) => {
     state.description = payload
+  },
+  deleteProduct: (state, {payload}:PayloadAction<string>) => {
+    if(state.products.products)
+      state.products.products = state.products.products.filter((product:any) => product._id != payload)
   }
 }
 
