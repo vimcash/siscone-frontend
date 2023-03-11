@@ -1,13 +1,10 @@
-// next.config.js
 module.exports = {
-    experimental: {
-      swcPlugins: [
-        [
-          'next-superjson-plugin',
-          {
-            excluded: [],
-          },
-        ],
-      ],
+  modularizeImports: {
+    '@mui/material': {
+      transform: '@mui/material/{{member}}',
     },
-  }
+    '@mui/icons-material/?(((\\w*)?/?)*)': {
+      transform: '@mui/icons-material/{{ matches.[1] }}/{{member}}',
+    },
+  },
+};

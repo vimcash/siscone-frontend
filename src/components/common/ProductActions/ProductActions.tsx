@@ -1,15 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Box, IconButton, Tooltip } from '@mui/material'
 import { Delete, Edit, Preview } from '@mui/icons-material'
 import { useAppDispatch } from '../../../hooks'
-import { deleteProduct } from '../../../features/dataManager/states/productState/productState'
+import { deleteProduct, setProductDetails } from '../../../features/dataManager/states/productState/productState'
+import { ProductPopup } from '../ProductPopup'
+import { ProductCard } from '../ProductCard'
 
 export const ProductActions = ({ params }) => {
-  const dispatch = useAppDispatch()
+    const [open, setOpen] = useState(false)
+  const dispatch = useAppDispatch();
   return (
+    <>
     <Box>
         <Tooltip title="Detalles del Producto">
-            <IconButton onClick={() => {}}>
+            <IconButton onClick={() => setOpen(true)}>
                 <Preview />
             </IconButton>
         </Tooltip>
@@ -26,6 +30,10 @@ export const ProductActions = ({ params }) => {
             </IconButton>
         </Tooltip>
     </Box>
+    <ProductPopup open={open} setOpen={setOpen}>
+        <ProductCard />
+    </ProductPopup>
+    </>
   )
 }
 

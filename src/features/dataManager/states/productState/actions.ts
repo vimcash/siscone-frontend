@@ -16,7 +16,10 @@ const actions = {
   deleteProduct: (state, {payload}:PayloadAction<string>) => {
     if(state.products.products)
       state.products.products = state.products.products.filter((product:any) => product._id != payload)
+  },
+  setProductDetails: (state, {payload}: PayloadAction<any>) => {
+    state.productDetails = payload
   }
 }
 
-export default actions
+export default actions;

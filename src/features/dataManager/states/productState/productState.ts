@@ -10,6 +10,7 @@ const initialState = {
   price: 0,
   description: "",
   products: [],
+  productDetails: {},
   status: "idle"
 }
 
@@ -38,6 +39,6 @@ const productState = createSlice({
   }
 })
 
-export const { setProductName, setCategoryID, setPrice, setDescription, deleteProduct } = productState.actions
+export const { setProductName, setCategoryID, setPrice, setDescription, setProductDetails, deleteProduct } = productState.actions
 export const selectProduct = (state:AppState) => state.product
 export const productReducer = productState.reducer

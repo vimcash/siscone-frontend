@@ -23,7 +23,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-, "src/components/common/ProductCard"  ],
+, "src/components/common/ProductPopup"  ],
   "exclude": [
     "node_modules"
   ]

@@ -1,10 +1,9 @@
-import { GetStaticProps, NextPage } from 'next/types'
+import { NextPage } from 'next/types'
 import React, { useState } from 'react'
 import { Add } from "@mui/icons-material";
 import { Box, Stack, Typography, Avatar } from "@mui/material";
 import { DataGrid, GridActionsCellItemProps, GridColDef } from '@mui/x-data-grid';
 import moment from 'moment';
-import { createTheme } from '@mui/material/styles';
 
 import { CustomButton } from "../components/common/CustomButton";
 import { ProductActions } from '../components/common/ProductActions';
@@ -75,46 +74,47 @@ const AllProducts = () => {
   const product = useAppSelector(selectProduct)
   console.log(product.products.products)
 return (
-    <Box mt={8} mb={16}>
-      <Stack direction="row"
-      sx={{
-        gap: {xs:2, md: 52, lg: 95, xl: 115},
-        mt: { md:2 , lg: 4},
-        ml: {xs:-2, lg: 1},
-      }}
-      justifyContent="space-between"
-      alignItems="center">
-          <Typography fontSize={25} fontWeight={700} color="#11142d">
-            Productos
-          </Typography>
-          {/* <Link href="/CreateProducts"> */}
-          <CustomButton 
-            title="Agregar Producto"
-            backgroundColor="#475be8"
-            color="#fcfcfc"
-            icon={<Add />}
-            handleClick={() => dispatch(useGetProducts())}
+      <Box mt={8} mb={16} flex={1}>
+        <Stack direction="row"
+        sx={{
+          mt: {xs:3,  md:2 , lg: 4},
+          mr: { xs:3.3, md:0}
+        }}
+        justifyContent="space-between"
+        alignItems="center">
+            <Typography fontSize={25} fontWeight={700} color="#11142d">
+              Productos
+            </Typography>
+            {/* <Link href="/CreateProducts"> */}
+            <Box sx={{mr:{ md:4.2}}}>
+              <CustomButton 
+                title="Agregar Producto"
+                backgroundColor="#475be8"
+                color="#fcfcfc"
+                icon={<Add />}
+                handleClick={() => dispatch(useGetProducts())}
+              />
+            </Box>
+            {/* </Link> */}
+        </Stack>
+        
+        <Box bgcolor="#fcfcfc" sx={{ height: 400, width: '98%', mt: 4, ml: {xs:-2.5, md:0} }}>
+          <DataGrid
+            rows={product.products.products || []}
+            columns={columns}
+            pageSize={pageSize}
+            rowsPerPageOptions={[5, 10, 20]}
+            onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
+            checkboxSelection
+            disableSelectionOnClick
+            experimentalFeatures={{ newEditingApi: true }}
+            getRowSpacing={params=> ({
+              top: params.isFirstVisible ? 0 : 5,
+              bottom: params.isLastVisible ? 0 : 5,
+            })}
           />
-          {/* </Link> */}
-      </Stack>
-      
-      <Box bgcolor="#fcfcfc" sx={{ height: 400, width: '100%', mt: 4, flex: 1}}>
-        <DataGrid
-          rows={product.products.products || []}
-          columns={columns}
-          pageSize={pageSize}
-          rowsPerPageOptions={[5, 10, 20]}
-          onPageSizeChange={(newPageSize) => setPageSize(newPageSize)}
-          checkboxSelection
-          disableSelectionOnClick
-          experimentalFeatures={{ newEditingApi: true }}
-          getRowSpacing={params=> ({
-            top: params.isFirstVisible ? 0 : 5,
-            bottom: params.isLastVisible ? 0 : 5,
-          })}
-        />
+        </Box>
       </Box>
-    </Box>
   )
 }
 

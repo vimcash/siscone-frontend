@@ -1,1 +1,5 @@
-export { ProductCard } from './ProductCard'
+import ProductCard from "./ProductCard";
+
+export {
+    ProductCard
+}
