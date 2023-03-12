@@ -1,18 +1,13 @@
-import { GetStaticProps, NextPage } from 'next/types'
 import React, { useState } from 'react'
 import { Add } from "@mui/icons-material";
 import { Box, Stack, Typography, Avatar } from "@mui/material";
-import { DataGrid, GridActionsCellItemProps, GridColDef } from '@mui/x-data-grid';
-import moment from 'moment';
-import { createTheme } from '@mui/material/styles';
-
+import { DataGrid, GridColDef } from '@mui/x-data-grid';
 import { CustomButton } from "../components/common/CustomButton";
 import { ProductActions } from '../components/common/ProductActions';
-import Link from 'next/link';
-import { getProducts } from './api/products';
 import { useAppDispatch, useAppSelector } from '../hooks';
 import { useGetProducts } from '../features/dataManager/hooks/useGetProducts';
 import { selectProduct } from '../features/dataManager/states/productState/productState';
+import { formatDate } from '../utils';
 
 const columns: GridColDef[] = [
   { field: 'id', headerName: 'ID', width: 90 },
@@ -46,7 +41,7 @@ const columns: GridColDef[] = [
     headerName: 'Fecha',
     width: 120,
     editable: false,
-    renderCell: params =>moment(params.row.createdAt).format('YYYY-MM-DD')
+    renderCell: params =>formatDate(params.row.createdAt, 'yyyy-MM-dd')
   },
   {
     field: 'photo',

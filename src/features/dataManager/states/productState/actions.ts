@@ -1,4 +1,5 @@
 import { PayloadAction } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const actions = {
   setProductName: (state, {payload}: PayloadAction<string>) => {
@@ -16,6 +17,7 @@ const actions = {
   deleteProduct: (state, {payload}:PayloadAction<string>) => {
     if(state.products.products)
       state.products.products = state.products.products.filter((product:any) => product._id != payload)
+      toast.success('Se elimino correctamente')
   }
 }
 
