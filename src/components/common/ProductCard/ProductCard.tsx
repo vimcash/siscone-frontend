@@ -16,6 +16,9 @@ import ShareIcon from '@mui/icons-material/Share';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
 import { PieChart, TotalRevenue } from '../../charts';
+import Grid from '@mui/material/Grid';
+import ImageListItemBar from '@mui/material/ImageListItemBar';
+import ImageListItem from '@mui/material/ImageListItem';
 
 
 export const ProductCard = () => {
@@ -23,20 +26,30 @@ export const ProductCard = () => {
   return (
     <Card sx={{ maxWidth: 1200, maxHeight: 1200, display: "flex" }} style={{backgroundColor: "#E5E5E5"}}>
       <CardContent sx={{ flex: '1 auto'}}>
-        <Stack sx={{}}>
+        
         <Typography variant="h5" component="div">
-          Lata
+          La famosa Lata de Tomate
         </Typography>
         <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
           27-2-2023
         </Typography>
-          
-          <CardMedia
-            component="img"
-            sx={{ width: 151, flexDirection: "row-reverse"}}
-            image="https://lafamosa.com/wp-content/uploads/2016/11/tomates-pelados-y-picados-15oz.jpg"
-            alt="Paella dish"
-          />
+        
+        <Stack sx={{flexDirection: {xs: "column", sm: "row"}}}>
+          <ImageListItem sx={{ width: 200 }}>
+              <img
+                src="https://lafamosa.com/wp-content/uploads/2016/11/tomates-pelados-y-picados-15oz.jpg"
+                alt="Paella dish"
+                loading="lazy"
+              />
+              <ImageListItemBar 
+                title="Venta"
+                subtitle="Precio: 90$"
+              />
+          </ImageListItem>
+           
+            <Typography sx={{ flex: 1, fontSize: 15, ml: 1}} color="text.secondary" gutterBottom>
+            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+            </Typography>
         </Stack>
 
         <Box mt="20px" flexWrap="wrap" gap={2} width="98%" sx={{ display: "flex"}}>
