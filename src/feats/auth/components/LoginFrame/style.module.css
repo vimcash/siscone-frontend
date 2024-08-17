@@ -1,0 +1,25 @@
+.inputGroup {
+  height: 36px;
+  width: 225px;
+}
+.inputGroup > span {
+  padding: 0 .75rem;
+  height: 100%;
+}
+.inputGroup > div {
+  height: 100%;
+}
+.inputGroup > div > input {
+  padding: 14px 0 2px 8px !important;
+  height: 100% !important;
+  min-height: auto !important;
+  position: absolute;
+  background: transparent !important;
+  z-index: 99;
+}
+.inputGroup > div > label {
+  font-size: 12px;
+  height: 36px;
+  line-height: 35px;
+  padding: 0 12px;
+}

@@ -1,20 +1,15 @@
-import React from 'react'
-import type { AppProps } from 'next/app'
-import '../assets/index.css'
-import  { Sidebar }  from '../layouts/Sidebar'
-import { StyledEngineProvider } from '@mui/styled-engine'
-import { Provider } from 'react-redux'
-import store from '../data/store'
+import "../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import type { AppProps } from "next/app";
+import { Provider } from "react-redux";
+import store from "@/data/store";
+import '../assets/style.css'
+import AppFrame from "@/layout/AppFrame";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function App ({Component, pageProps}: AppProps) {
-  return (
-    <div className="flex bg-[#E5E5E5]">
-      <Provider store={store}>
-          <Sidebar />
-          <Component {...pageProps}/>
-      </Provider>
-    </div>
-  )
+export default function App({ Component, pageProps }: AppProps) {
+  return <Provider store={store}>
+    <ToastContainer />
+    <AppFrame Component={Component} pageProps={pageProps} />
+  </Provider>
 }
-
-export default App

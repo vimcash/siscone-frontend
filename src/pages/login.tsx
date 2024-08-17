@@ -1,5 +1,12 @@
-import { LoginContainer } from "../features/auth";
+import { LoginContainer } from '@/feats/auth/container/LoginContainer'
+import React from 'react'
+import Local from '../libs/localStorage';
 
-const login = () => <LoginContainer />
+const Login = ({dispatch, router}:any) => {
+  console.log(process.env.PRUEBA)
+  return <>
+    <LoginContainer dispatch={dispatch} router={router}/>
+  </>
+}
 
-export default login
+export default Login

@@ -1,11 +1,8 @@
-import React from 'react'
-import { TemplateForm } from '../features/Template';
+import { DashboardContainer } from "@/feats/main/containers/DashboardContainer"
+import { Inter } from "next/font/google"
 
-
-const Index = () =>{
-  return (
-    <TemplateForm />
-  )
+const inter = Inter({ subsets: ["latin"] })
+export default function Home({ dispatch, router }) {
+  console.log(process.env.PRUEBA)
+  return <DashboardContainer dispatch={dispatch} router={router} />
 }
-
-export default Index

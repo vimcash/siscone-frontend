@@ -1,6 +1,1 @@
-export {getLocalStorage} from './getLocalStorage'
-export {setLocalStorage} from './setLocalStorage'
-export {setFocus} from './setFocus'
-export {formatDate} from './formatDate'
-export {isDate} from './isDate'
-export {getColumnByIndex} from './getColumnByIndex'
+export {setDelay} from './setDelay'
