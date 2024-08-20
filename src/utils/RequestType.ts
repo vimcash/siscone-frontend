@@ -1,1 +1,0 @@
-export type RequestType = 'POST' | 'GET' | 'DELETE' | 'PUT'
